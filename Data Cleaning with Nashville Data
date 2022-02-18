@@ -1,0 +1,63 @@
+SELECT
+  SaleDate,
+  CAST(SaleDate AS DATE)
+FROM
+  `sql-data-exploration-340900.Project_2.NH`
+LIMIT
+  1000
+UPDATE
+  `sql-data-exploration-340900.Project_2.NH`
+SET
+  SaleDate = CAST(SaleDate AS DATE)
+ALTER TABLE
+  Project_2.NH ADD SaleDateConverted Date;
+UPDATE
+  `sql-data-exploration-340900.Project_2.NH`
+SET
+  SaleDateConverted = CAST(SaleDate,Date)
+  -- Populate Property Address data;
+SELECT
+  *
+FROM
+  `sql-data-exploration-340900.Project_2.NH`
+WHERE
+  --PropertyAddress IS NULL
+ORDER BY
+  ParcelID
+SELECT
+  a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, ISNULL (a.PropertyAddress,b.PropertyAddress)
+FROM
+  `sql-data-exploration-340900.Project_2.NH` a
+JOIN
+  `sql-data-exploration-340900.Project_2.NH` b
+ON
+  a.ParcelID = b.ParcelID
+  AND a.`UniqueID` <> b.`UniqueID`
+Where PropertyAddress is NULL
+
+
+UPDATE a
+Set PropertyAddress = ISNULL (a.PropertyAddress,b.PropertyAddress)
+FROM
+  `sql-data-exploration-340900.Project_2.NH` a
+JOIN
+  `sql-data-exploration-340900.Project_2.NH` b
+ON
+  a.ParcelID = b.ParcelID
+  AND a.`UniqueID` <> b.`UniqueID`
+Where PropertyAddress is NULL
+
+-- Breaking Out Address into Individual Columns (Address, City, State)
+SELECT
+  PropertyAddress
+FROM
+  `sql-data-exploration-340900.Project_2.NH`
+--WHERE PropertyAddress IS NULL
+--ORDER BY ParcelID
+
+Select
+SUBSTRING(PropertyAddress, 1, [ ]) as Address
+
+From `sql-data-exploration-340900.Project_2.NH`
+
+-- Last Updated Feb. 18, 2022 - Needs to be Finished
