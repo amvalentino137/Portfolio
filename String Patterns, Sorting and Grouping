@@ -1,0 +1,51 @@
+-- Query 1 --
+
+SELECT F_NAME , L_NAME
+FROM EMPLOYEES
+WHERE ADDRESS LIKE '%Elgin,IL%';
+
+-- Query 2 --
+
+select F_NAME, L_NAME
+from Employees
+where B_DATE like '197%';
+
+-- Query 3 --
+
+select f_name, l_name
+from employees
+where dep_id = 5 and salary between '60000' and '70000';
+
+-- Query 4 --
+
+select f_name, l_name, dep_id
+from employees
+order by dep_id;
+
+-- Query 5 - Will Cover Soon --
+
+SELECT D.DEP_NAME , E.F_NAME, E.L_NAME
+FROM EMPLOYEES as E, DEPARTMENTS as D
+WHERE E.DEP_ID = D.DEPT_ID_DEP
+ORDER BY D.DEP_NAME, E.L_NAME DESC;
+
+-- Query 6 --
+
+select dep_id, count(*)
+from employees
+group by dep_id;
+
+-- Query 7 --
+
+select dep_id, count(*) as num_employees, avg(salary) as avg_salary
+from employees
+group by dep_id 
+order by avg_salary;
+
+-- Query 8 -- 
+
+select dep_id, count(*) as num_employees, avg(salary) as avg_salary
+from employees
+group by dep_id 
+having count(*) < 4
+order by avg_salary;
