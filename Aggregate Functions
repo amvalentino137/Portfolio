@@ -1,0 +1,58 @@
+ -- Aggregate Functions --
+ 
+ select *
+ from petrescue;
+ 
+ select cost, sum(cost) as sum_of_cost
+ from petrescue
+ group by cost;
+ 
+ select quantity, max(quantity) as most_rescued
+ from petrescue
+ group by quantity;
+ 
+ select cost, avg(cost) as average_cost
+ from petrescue
+ group by cost;
+ 
+  select avg(cost/quantity)
+ from petrescue
+ where animal = 'dog';
+ 
+ --Scalar and String Functions --
+ 
+ select round(cost)
+ from petrescue;
+ 
+ select length(animal)
+ from petrescue;
+ 
+ select ucase(animal)
+ from petrescue;
+ 
+  select distinct ucase(animal)
+ from petrescue;
+ 
+ select *
+ from petrescue
+ where lcase(animal) = 'cat';
+ 
+ --Date and Time Functions --
+ 
+ select day(rescuedate)
+ from petrescue
+ where animal = 'cat';
+ 
+ select sum(quantity)
+ from petrescue
+ where month(rescuedate) = '5';
+ 
+ select sum(quantity)
+ from petrescue
+ where day(rescuedate) = '14';
+ 
+ select (rescuedate + 3) 
+ from petrescue;
+ 
+ select (current_date - rescuedate)
+ from petrescue;
