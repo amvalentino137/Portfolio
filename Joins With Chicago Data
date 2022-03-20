@@ -1,0 +1,11 @@
+-- List the case number, type of crime and community area for all crimes in community area number 18. --
+
+Select C.Case_Number, PRIMARY_TYPE, SED.COMMUNITY_AREA_NAME
+From chicago_crime C inner join chicago_socioeconomic_data SED
+where C.COMMUNITY_AREA_NUMBER = SED.COMMUNITY_AREA_NUMBER and C.COMMUNITY_AREA_NUMBER = 18
+
+-- List all crimes that took place at a school. Include case number, crime type and community name. --
+
+Select C.Case_Number, PRIMARY_TYPE, SED.COMMUNITY_AREA_NAME, LOCATION_DESCRIPTION
+From chicago_crime C inner join chicago_socioeconomic_data SED
+where C.COMMUNITY_AREA_NUMBER = SED.COMMUNITY_AREA_NUMBER and C.LOCATION_DESCRIPTION like 'School%'
