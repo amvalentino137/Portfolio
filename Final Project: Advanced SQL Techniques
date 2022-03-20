@@ -1,0 +1,23 @@
+-- Part One - Using Joins -- 
+
+`Write and execute a SQL query to list the school names, community names and average attendance for communities with a hardship index of 98.`
+
+SELECT S.NAME_OF_SCHOOL, SED.COMMUNITY_AREA_NAME, S.AVERAGE_STUDENT_ATTENDANCE, SED.hardship_index
+FROM chicago_public_schools S Left outer join chicago_socioeconomic_data SED
+on S.COMMUNITY_AREA_NAME = SED.COMMUNITY_AREA_NAME
+WHERE hardship_index = 98
+
+`Write and execute a SQL query to list all crimes that took place at a school. Include case number, crime type and community name.`
+
+Select C.Case_Number, SED.Community_Area_Name, C.Primary_Type, C.Location_description
+From chicago_crime C Left Outer Join chicago_socioeconomic_data SED
+on C.COMMUNITY_AREA_NUMBER = SED.COMMUNITY_AREA_NUMBER
+where C.LOCATION_DESCRIPTION like 'school%'
+
+-- Part Two : Creating a View -- 
+
+`Write and execute a SQL statement to create a view showing the columns listed in the following table, with new column names as shown in the second column.`
+
+Create View school_data (School_Name, Safety_Rating, Family_Rating, Environment_Rating, Instruction_Rating, Leaders_Rating, Teachers_Rating) as 
+select `NAME_OF_SCHOOL`, Safety_Icon, Family_Involvement_Icon, Environment_Icon, Instruction_Icon, Leaders_Icon, Teachers_Icon
+from chicago_public_schools
