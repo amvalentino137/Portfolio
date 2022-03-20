@@ -1,3 +1,5 @@
+-- Retrieve All Data -- 
+
 DELIMITER //
 
 CREATE PROCEDURE RETRIEVE_ALL()
@@ -10,3 +12,31 @@ BEGIN
 END //
 
 DELIMITER ; 
+
+-- Updating Animal Sale Price Based On Health Condition -- 
+
+DELIMITER @
+CREATE PROCEDURE UPDATE_SALEPRICE ( 
+   IN Animal_ID INTEGER, IN Animal_Health VARCHAR(5) )     
+BEGIN 
+
+   IF Animal_Health = 'BAD' THEN                           
+       UPDATE PETSALE
+       SET SALEPRICE = SALEPRICE - (SALEPRICE * 0.25)
+       WHERE ID = Animal_ID;
+   
+   ELSEIF Animal_Health = 'WORSE' THEN
+       UPDATE PETSALE
+       SET SALEPRICE = SALEPRICE - (SALEPRICE * 0.5)
+       WHERE ID = Animal_ID;
+       
+   ELSE
+       UPDATE PETSALE
+       SET SALEPRICE = SALEPRICE
+       WHERE ID = Animal_ID;
+
+   END IF;                                                 
+   
+END @
+
+DELIMITER ;
