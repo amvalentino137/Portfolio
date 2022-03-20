@@ -1,0 +1,37 @@
+-- Cross Join --
+
+SELECT column_name(s)
+FROM table1
+CROSS JOIN table2;
+
+-- Self Join --
+
+SELECT column_name(s)
+FROM table1 T1, table1 T2
+WHERE condition;
+
+-- Inner Join -- 
+
+Select B.Borrower_ID, B.Last_Name, B.Country, L.Borrower_ID, L.Loan Date
+From Borrower B Inner Join Loan L
+On B.Borrower_ID = L.Borrower_ID 
+
+-- Outer Join --
+
+-- Left (Outer) Join -- 
+Select B.Borrower_ID, B.Last_Name, B.Country, L.Borrower_ID, L.Loan Date
+From Borrower B Left Join Loan L
+On B.Borrower_ID = L.Borrower_ID  
+
+-- Right (Outer) Join --
+Select B.Borrower_ID, B.Last_Name, B.Country, L.Borrower_ID, L.Loan Date
+From Borrower B Right Join Loan L
+On B.Borrower_ID = L.Borrower_ID  
+
+-- Full (Outer) Join --
+Select B.Borrower_ID, B.Last_Name, B.Country, L.Borrower_ID, L.Loan Date
+From Borrower B Full Join Loan L
+On B.Borrower_ID = L.Borrower_ID  
+
+-- Specifying Left or Right on an Outer Join will determine which table will have all the data pulled 
+and what inside of the other table matches with the primary table --
